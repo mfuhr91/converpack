@@ -1,4 +1,4 @@
-package com.example.converpak
+package com.mfuhr.converpack
 
 import io.flutter.embedding.android.FlutterActivity
 

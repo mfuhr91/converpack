@@ -10,24 +10,29 @@ class MonedaService {
   Future<List<Moneda>> _procesarRespuesta(Uri url) async {
     final resp = await http.get(url);
 
-    final decodedData = json.decode(resp.body);
+    if (resp.statusCode == 200) {
+      final decodedData = json.decode(resp.body);
+      for (var item in decodedData) {
+        Moneda moneda = Moneda.fromJson(item);
+        monedas.add(moneda);
+      }
 
-    for (var item in decodedData) {
-      Moneda moneda = Moneda.fromJson(item);
-      monedas.add(moneda);
+      return monedas;
+    } else {
+      throw Exception('No se puede acceder al servidor');
     }
-    // decodedData.forEach((element) {
-    //   monedas.add(element);
-    // });
-
-    return monedas;
   }
 
   Future<List<Moneda>> getCotizaciones() async {
     final url = Uri.https(_url, 'api/moneda/listarUltimos');
-
-    final resp = await _procesarRespuesta(url);
-
-    return resp;
+   
+    try {
+      final resp = await _procesarRespuesta(url);
+      return resp;
+    } catch (Exception) {
+      print(Exception);
+      return Exception;
+      /* return resp; */
+    }
   }
 }
