@@ -4,6 +4,7 @@ import 'package:converpak/src/models/moneda_model.dart';
 import 'package:converpak/src/services/moneda_service.dart';
 import 'package:converpak/src/utils/app_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Pagina extends StatefulWidget {
@@ -14,6 +15,7 @@ class Pagina extends StatefulWidget {
 class _PaginaState extends State<Pagina> {
   Future<List<Moneda>> _cotizaciones;
   final _monedaService = new MonedaService();
+
   final _montoField = TextEditingController();
 
   @override
@@ -21,6 +23,7 @@ class _PaginaState extends State<Pagina> {
     super.initState();
 
     _cotizaciones = _monedaService.getCotizaciones();
+
     _montoField.addListener(() {
       _calcular();
     });
@@ -30,11 +33,15 @@ class _PaginaState extends State<Pagina> {
   IconData iconTotal = FontAwesomeIcons.euroSign;
 
   bool pesoAEuro = true;
-  double monto = 0.00;
+  double _monto = 0.00;
   double _valorEuro = 0.00;
   double _valorBitcoin = 0.00;
   double _monedaConvertida = 0.00;
   double _bitcoinConvertido = 0.00;
+  double _packs64 = 0.00;
+  double _packs107 = 0.00;
+  double _packs535 = 0.00;
+  double _packs1070 = 0.00;
 
   @override
   void dispose() {
@@ -61,6 +68,7 @@ class _PaginaState extends State<Pagina> {
             SizedBox(height: 10.0),
             _totalMoneda(color, appConfig),
             _totalBitcoin(color, appConfig),
+            _packs(color, appConfig),
             _selector(color, appConfig),
           ],
         ),
@@ -79,12 +87,15 @@ class _PaginaState extends State<Pagina> {
       padding: EdgeInsets.only(left: 10.0),
       child: TextField(
         controller: _montoField,
+        inputFormatters: [
+          FilteringTextInputFormatter(RegExp(',*-* *'), allow: false),
+        ],
         style: TextStyle(
             fontSize: appConfig.fontSize,
             fontWeight: FontWeight.bold,
             color: Colors.black),
         autofocus: true,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.numberWithOptions(signed: false),
         decoration: InputDecoration(
           icon: Icon(iconMonto, size: 27.0, color: color),
           hintStyle:
@@ -220,7 +231,7 @@ class _PaginaState extends State<Pagina> {
           Icon(iconTotal, size: 25.0, color: Colors.black),
           Padding(
             padding: const EdgeInsets.only(top: 1.0),
-            child: Text('  ${_monedaConvertida.toStringAsFixed(2)}',
+            child: Text('    ${_monedaConvertida.toStringAsFixed(2)}',
                 style: TextStyle(
                     fontSize: appConfig.fontSize,
                     fontWeight: FontWeight.bold,
@@ -250,7 +261,7 @@ class _PaginaState extends State<Pagina> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 1.0),
-            child: Text('  ${_bitcoinConvertido.toStringAsFixed(8)}',
+            child: Text('    ${_bitcoinConvertido.toStringAsFixed(8)} ',
                 style: TextStyle(
                     fontSize: appConfig.fontSize,
                     fontWeight: FontWeight.bold,
@@ -261,15 +272,161 @@ class _PaginaState extends State<Pagina> {
     );
   }
 
+  Widget _packs(Color color, AppConfig appConfig) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.only(bottom: 15.0),
+      width: appConfig.width * 0.85,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(5.0),
+            width: appConfig.width * 0.80,
+            child: Text('Packs:',
+                style: TextStyle(
+                    fontSize: appConfig.fontSize - 2,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black)),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.only(bottom: 5.0),
+            width: appConfig.width * 0.80,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(),
+            ),
+            child: Row(
+              children: [
+                Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+                Text(' 64.20€: ',
+                    style: TextStyle(
+                        fontSize: appConfig.fontSize - 2,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black)),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 6.0),
+                    child: Text('${_packs64.toStringAsFixed(2)} packs',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: appConfig.fontSize,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.only(bottom: 5.0),
+            width: appConfig.width * 0.80,
+            decoration: BoxDecoration(
+              //color: Colors.grey[500],
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(),
+            ),
+            child: Row(
+              children: [
+                Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+                Text(' 107€:     ',
+                    style: TextStyle(
+                        fontSize: appConfig.fontSize - 2,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black)),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 2.0),
+                    child: Text('${_packs107.toStringAsFixed(2)} packs',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: appConfig.fontSize,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.only(bottom: 5.0),
+            width: appConfig.width * 0.80,
+            decoration: BoxDecoration(
+              //color: Colors.grey[500],
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(),
+            ),
+            child: Row(
+              children: [
+                Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+                Text(' 535€:     ',
+                    style: TextStyle(
+                        fontSize: appConfig.fontSize - 2,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black)),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 2.0),
+                    child: Text('${_packs535.toStringAsFixed(2)} packs',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: appConfig.fontSize,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.only(bottom: 5.0),
+            width: appConfig.width * 0.80,
+            decoration: BoxDecoration(
+              //color: Colors.grey[500],
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(),
+            ),
+            child: Row(
+              children: [
+                Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+                Text(' 1070€:   ',
+                    style: TextStyle(
+                        fontSize: appConfig.fontSize - 2,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black)),
+                Flexible(
+                  child: Text('${_packs1070.toStringAsFixed(2)} packs',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: appConfig.fontSize,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black)),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _selector(Color color, AppConfig appConfig) {
     return Container(
+        margin: EdgeInsets.only(bottom: 15.0),
         child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _convertirAEuro(color, appConfig),
-        _convertirAPeso(color, appConfig),
-      ],
-    ));
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _convertirAEuro(color, appConfig),
+            _convertirAPeso(color, appConfig),
+          ],
+        ));
   }
 
   FlatButton _convertirAEuro(Color color, AppConfig appConfig) {
@@ -338,20 +495,27 @@ class _PaginaState extends State<Pagina> {
   }
 
   void _calcular() {
-    if (_montoField.text != '') {
-      monto = double.parse(_montoField.text.toString());
+    if (_montoField.text.isNotEmpty) {
+      _monto = double.parse(_montoField.text.toString());
+
       if (pesoAEuro) {
-        print('${(dp((monto / _valorEuro), 2)).toStringAsFixed(2)}');
-        print('${(dp((monto / _valorEuro), 10))}');
-        _monedaConvertida = dp((monto / _valorEuro), 2);
-        _bitcoinConvertido = dp((monto / _valorBitcoin), 8);
+        _monedaConvertida = dp((_monto / _valorEuro), 2);
+        _bitcoinConvertido = dp((_monto / _valorBitcoin), 8);
+
+        _packs64 = _monedaConvertida / 64.20;
+        _packs107 = _monedaConvertida / 107;
+        _packs535 = _monedaConvertida / 535;
+        _packs1070 = _monedaConvertida / 1070;
       } else {
-        print('${(dp((monto * _valorEuro), 2)).toStringAsFixed(2)}');
-        _monedaConvertida = dp((monto * _valorEuro), 2);
-        print('${(dp((monto * _valorEuro), 10))}');
-        _bitcoinConvertido = dp(((monto * _valorEuro) / _valorBitcoin), 6);
+        _monedaConvertida = dp((_monto * _valorEuro), 2);
+        _bitcoinConvertido = dp(((_monto * _valorEuro) / _valorBitcoin), 6);
+
+        _packs64 = _monto / 64.20;
+        _packs107 = _monto / 107;
+        _packs535 = _monto / 535;
+        _packs1070 = _monto / 1070;
       }
+      setState(() {});
     }
-    setState(() {});
   }
 }
