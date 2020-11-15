@@ -1,4 +1,3 @@
-import 'package:converpak/src/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:converpak/src/models/moneda_model.dart';
@@ -44,7 +43,8 @@ class Cotizacion extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Text(
-                      (datos.valorEuro.toString().endsWith(".0")) ? 
+                      // comparo que el numero no termine en .0 o .n, de ser asi, le agrego un 0 al final para tener 2 decimales
+                      ((datos.valorEuro * 10).toString().endsWith(".0")) ? 
                       'Euro Blue:  ${datos.valorEuro}0' :
                       'Euro Blue:  ${datos.valorEuro}',
                       style: TextStyle(
@@ -61,7 +61,8 @@ class Cotizacion extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text(
-                    (datos.valorBitcoin.toString().endsWith(".0")) ? 
+                    // comparo que el numero no termine en .0 o .n, de ser asi, le agrego un 0 al final para tener 2 decimales
+                    ((datos.valorBitcoin * 10).toString().endsWith(".0")) ? 
                       'Bitcoin:   ${datos.valorBitcoin}0' :
                       'Bitcoin:   ${datos.valorBitcoin}',
                       style: TextStyle(

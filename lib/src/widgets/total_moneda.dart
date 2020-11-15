@@ -22,7 +22,7 @@ class TotalMoneda extends StatelessWidget {
       alignment: Alignment.center,
       child: Row(
         children: [
-          Icon(datos.iconTotal, size: 25.0, color: Colors.black),
+          Icon(datos.iconTotal, size: datos.fontSize + 3.0, color: Colors.black),
           Padding(
             padding: const EdgeInsets.only(top: 1.0),
             child: Text('    ${datos.monedaConvertida.toStringAsFixed(2)}',

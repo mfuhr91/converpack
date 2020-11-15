@@ -27,7 +27,7 @@ class _TotalBitcoinState extends State<TotalBitcoin> {
         children: [
           Icon(
             FontAwesomeIcons.bitcoin,
-            size: 25.0,
+            size: datos.fontSize + 3.0,
             color: Color.fromRGBO(239, 143, 43, 1.0),
           ),
           Padding(

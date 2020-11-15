@@ -50,7 +50,7 @@ class Packs extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
           Text(' 1070€:   ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,
@@ -85,7 +85,7 @@ class Packs extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
           Text(' 535€:     ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,
@@ -123,7 +123,7 @@ class Packs extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
           Text(' 107€:     ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,
@@ -160,7 +160,7 @@ class Packs extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(FontAwesomeIcons.cube, size: 20.0, color: Colors.black),
+          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
           Text(' 64.20€: ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,

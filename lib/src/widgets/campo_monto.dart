@@ -28,7 +28,7 @@ class CampoMonto extends StatelessWidget {
         autofocus: true,
         keyboardType: TextInputType.numberWithOptions(signed: false),
         decoration: InputDecoration(
-          icon: Icon(datos.iconMonto, size: 27.0, color: datos.color),
+          icon: Icon(datos.iconMonto, size: datos.fontSize + 3.0, color: datos.color),
           hintStyle: TextStyle(fontSize: datos.fontSize, color: Colors.black),
           hintText: 'Ingrese un monto',
           border: InputBorder.none,
