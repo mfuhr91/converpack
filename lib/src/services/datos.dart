@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,6 +7,8 @@ class Datos with ChangeNotifier {
 
   Color _color;
   bool _pesoAEuro = true;
+  bool _bitAPeso = false;
+  bool _euroAPeso = false;
   double _monto = 0.00;
   double _valorEuro = 0.00;
   double _valorBitcoin = 0.00;
@@ -34,6 +35,16 @@ class Datos with ChangeNotifier {
   set pesoAEuro(bool pesoAEuro) {
     this._pesoAEuro = pesoAEuro;
   }
+  bool get bitAPeso => _bitAPeso;
+
+  set bitAPeso(bool bitAPeso) {
+    this._bitAPeso = bitAPeso;
+  }
+  bool get euroAPeso => _euroAPeso;
+
+  set euroAPeso(bool euroAPeso) {
+    this._euroAPeso = euroAPeso;
+  }
 
   double get monto => _monto;
 
@@ -57,14 +68,12 @@ class Datos with ChangeNotifier {
 
   set monedaConvertida(double value) {
     _monedaConvertida = value;
-   
   }
 
   double get bitcoinConvertido => _bitcoinConvertido;
 
   set bitcoinConvertido(double value) {
     _bitcoinConvertido = value;
-    
   }
 
   double get packs64 => _packs64;

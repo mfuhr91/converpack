@@ -4,6 +4,7 @@ import 'package:converpak/src/models/moneda_model.dart';
 import 'package:converpak/src/services/datos.dart';
 import 'package:converpak/src/services/moneda_service.dart';
 
+// ignore: must_be_immutable
 class Cotizacion extends StatelessWidget {
   Future<List<Moneda>> _cotizaciones;
 

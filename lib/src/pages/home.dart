@@ -54,6 +54,15 @@ class Home extends StatelessWidget {
         datos.packs107 = datos.monedaConvertida / 107;
         datos.packs535 = datos.monedaConvertida / 535;
         datos.packs1070 = datos.monedaConvertida / 1070;
+      } else if(datos.bitAPeso) {
+        datos.monedaConvertida = dp((datos.monto * datos.valorEuro), 2);
+        datos.bitcoinConvertido =
+            dp(((datos.monto * datos.valorEuro) / datos.valorBitcoin), 6);
+
+        datos.packs64 = datos.monto / 64.20;
+        datos.packs107 = datos.monto / 107;
+        datos.packs535 = datos.monto / 535;
+        datos.packs1070 = datos.monto / 1070;
       } else {
         datos.monedaConvertida = dp((datos.monto * datos.valorEuro), 2);
         datos.bitcoinConvertido =
