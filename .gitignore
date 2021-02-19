@@ -43,3 +43,4 @@ app.*.map.json
 prototipo.jpeg
 
 /android/key.properties
+key.jks
