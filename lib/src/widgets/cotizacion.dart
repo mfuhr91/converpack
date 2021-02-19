@@ -46,8 +46,8 @@ class Cotizacion extends StatelessWidget {
                     child: Text(
                       // comparo que el numero no termine en .0 o .n, de ser asi, le agrego un 0 al final para tener 2 decimales
                       ((datos.valorEuro * 10).toString().endsWith(".0")) ? 
-                      'Euro Blue:  ${datos.valorEuro}0' :
-                      'Euro Blue:  ${datos.valorEuro}',
+                      ' Euro Blue:  ${datos.valorEuro}0' :
+                      ' Euro Blue:  ${datos.valorEuro}',
                       style: TextStyle(
                           fontSize: datos.fontSize,
                           fontWeight: FontWeight.bold,
@@ -64,8 +64,8 @@ class Cotizacion extends StatelessWidget {
                   child: Text(
                     // comparo que el numero no termine en .0 o .n, de ser asi, le agrego un 0 al final para tener 2 decimales
                     ((datos.valorBitcoin * 10).toString().endsWith(".0")) ? 
-                      'Bitcoin:   ${datos.valorBitcoin}0' :
-                      'Bitcoin:   ${datos.valorBitcoin}',
+                      ' Bitcoin:   ${datos.valorBitcoin}0' :
+                      ' Bitcoin:   ${datos.valorBitcoin}',
                       style: TextStyle(
                           fontSize: datos.fontSize,
                           fontWeight: FontWeight.bold,

@@ -13,7 +13,7 @@ class Datos with ChangeNotifier {
   double _valorEuro = 0.00;
   double _valorBitcoin = 0.00;
   double _monedaConvertida = 0.00;
-  double _bitcoinConvertido = 0.00;
+  double _moneda2Convertida = 0.00;
   double _packs64 = 0.00;
   double _packs107 = 0.00;
   double _packs535 = 0.00;
@@ -70,10 +70,10 @@ class Datos with ChangeNotifier {
     _monedaConvertida = value;
   }
 
-  double get bitcoinConvertido => _bitcoinConvertido;
+  double get moneda2Convertida => _moneda2Convertida;
 
-  set bitcoinConvertido(double value) {
-    _bitcoinConvertido = value;
+  set moneda2Convertida(double value) {
+    _moneda2Convertida = value;
   }
 
   double get packs64 => _packs64;

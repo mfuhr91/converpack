@@ -7,8 +7,8 @@ import 'package:converpak/src/widgets/botones.dart';
 import 'package:converpak/src/widgets/campo_monto.dart';
 import 'package:converpak/src/widgets/cotizacion.dart';
 import 'package:converpak/src/widgets/packs.dart';
-import 'package:converpak/src/widgets/total_bitcoin.dart';
 import 'package:converpak/src/widgets/total_moneda.dart';
+import 'package:converpak/src/widgets/total_moneda2.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
             Cotizacion(),
             SizedBox(height: 10.0),
             TotalMoneda(),
-            TotalBitcoin(),
+            TotalMoneda2(),
             Packs(),
             Botones(),
           ],
@@ -48,16 +48,16 @@ class Home extends StatelessWidget {
     if (datos.monto != null) {
       if (datos.pesoAEuro) {
         datos.monedaConvertida = dp((datos.monto / datos.valorEuro), 2);
-        datos.bitcoinConvertido = dp((datos.monto / datos.valorBitcoin), 8);
+        datos.moneda2Convertida = dp((datos.monto / datos.valorBitcoin), 8);
 
         datos.packs64 = datos.monedaConvertida / 64.20;
         datos.packs107 = datos.monedaConvertida / 107;
         datos.packs535 = datos.monedaConvertida / 535;
         datos.packs1070 = datos.monedaConvertida / 1070;
       } else if(datos.bitAPeso) {
-        datos.monedaConvertida = dp((datos.monto * datos.valorEuro), 2);
-        datos.bitcoinConvertido =
-            dp(((datos.monto * datos.valorEuro) / datos.valorBitcoin), 6);
+        datos.monedaConvertida = dp((datos.monto * datos.valorBitcoin), 2);
+        datos.moneda2Convertida =
+            dp(((datos.monto * datos.valorBitcoin) / datos.valorEuro), 6);
 
         datos.packs64 = datos.monto / 64.20;
         datos.packs107 = datos.monto / 107;
@@ -65,7 +65,7 @@ class Home extends StatelessWidget {
         datos.packs1070 = datos.monto / 1070;
       } else {
         datos.monedaConvertida = dp((datos.monto * datos.valorEuro), 2);
-        datos.bitcoinConvertido =
+        datos.moneda2Convertida =
             dp(((datos.monto * datos.valorEuro) / datos.valorBitcoin), 6);
 
         datos.packs64 = datos.monto / 64.20;

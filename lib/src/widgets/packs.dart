@@ -38,55 +38,20 @@ class Packs extends StatelessWidget {
     );
   }
 
-  Container _pack1070(Datos datos) {
+  Container _pack64(Datos datos) {
     return Container(
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.only(bottom: 5.0),
       width: datos.width * 0.80,
       decoration: BoxDecoration(
-        //color: Colors.grey[500],
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(),
       ),
       child: Row(
         children: [
+          SizedBox(width: 5.0),
           Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
-          Text(' 1070€:   ',
-            style: TextStyle(
-              fontSize: datos.fontSize - 2,
-              fontWeight: FontWeight.w400,
-              color: Colors.black
-            )
-          ),
-          Flexible(
-            child: Text('${datos.packs1070.toStringAsFixed(2)} packs',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: datos.fontSize,
-                fontWeight: FontWeight.w900,
-                color: Colors.black
-              )
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container _pack535(Datos datos) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.only(bottom: 5.0),
-      width: datos.width * 0.80,
-      decoration: BoxDecoration(
-        //color: Colors.grey[500],
-        borderRadius: BorderRadius.circular(15.0),
-        border: Border.all(),
-      ),
-      child: Row(
-        children: [
-          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
-          Text(' 535€:     ',
+          Text(' 64.20€: ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,
               fontWeight: FontWeight.w400,
@@ -95,8 +60,8 @@ class Packs extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 2.0),
-              child: Text('${datos.packs535.toStringAsFixed(2)} packs',
+              padding: const EdgeInsets.only(left: 6.0),
+              child: Text('${datos.packs64.toStringAsFixed(2)} packs',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: datos.fontSize,
@@ -110,7 +75,6 @@ class Packs extends StatelessWidget {
       ),
     );
   }
-
   Container _pack107(Datos datos) {
     return Container(
       padding: EdgeInsets.all(10.0),
@@ -123,6 +87,7 @@ class Packs extends StatelessWidget {
       ),
       child: Row(
         children: [
+          SizedBox(width: 5.0),
           Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
           Text(' 107€:     ',
             style: TextStyle(
@@ -149,19 +114,21 @@ class Packs extends StatelessWidget {
     );
   }
 
-  Container _pack64(Datos datos) {
+  Container _pack535(Datos datos) {
     return Container(
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.only(bottom: 5.0),
       width: datos.width * 0.80,
       decoration: BoxDecoration(
+        //color: Colors.grey[500],
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(),
       ),
       child: Row(
         children: [
+          SizedBox(width: 5.0),
           Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
-          Text(' 64.20€: ',
+          Text(' 535€:     ',
             style: TextStyle(
               fontSize: datos.fontSize - 2,
               fontWeight: FontWeight.w400,
@@ -170,8 +137,8 @@ class Packs extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 6.0),
-              child: Text('${datos.packs64.toStringAsFixed(2)} packs',
+              padding: const EdgeInsets.only(left: 2.0),
+              child: Text('${datos.packs535.toStringAsFixed(2)} packs',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: datos.fontSize,
@@ -179,6 +146,43 @@ class Packs extends StatelessWidget {
                   color: Colors.black
                 )
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  
+  Container _pack1070(Datos datos) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      margin: EdgeInsets.only(bottom: 5.0),
+      width: datos.width * 0.80,
+      decoration: BoxDecoration(
+        //color: Colors.grey[500],
+        borderRadius: BorderRadius.circular(15.0),
+        border: Border.all(),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 5.0),
+          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
+          Text(' 1070€:   ',
+            style: TextStyle(
+              fontSize: datos.fontSize - 2,
+              fontWeight: FontWeight.w400,
+              color: Colors.black
+            )
+          ),
+          Flexible(
+            child: Text('${datos.packs1070.toStringAsFixed(2)} packs',
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: datos.fontSize,
+                fontWeight: FontWeight.w900,
+                color: Colors.black
+              )
             ),
           ),
         ],
