@@ -1,16 +1,11 @@
-# converpak
+# ConverPack 📱 🇦🇷
 
-A new Flutter project.
+Conversor de pesos argentinos a euro blue y bitcoins
 
-## Getting Started
+## Descripción 
 
-This project is a starting point for a Flutter application.
+Aplicación de conversión del peso argentino al euro blue y bitcoins, y viceversa calculando la cantidad de packs disponibles para la comprar en su plataforma favorita, como así también la cantidad de bitcoins que se pueden comprar con la cotización de las monedas actualizadas a cada hora.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Capturas
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
