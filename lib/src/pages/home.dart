@@ -23,19 +23,19 @@ class Home extends StatelessWidget {
     datos.color = Theme.of(context).accentColor;
 
     return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CampoMonto(),
-            Cotizacion(),
-            SizedBox(height: 10.0),
-            TotalMoneda(),
-            TotalMoneda2(),
-            Packs(),
-            Botones(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CampoMonto(),
+              Cotizacion(),
+              SizedBox(height: 10.0),
+              TotalMoneda(),
+              TotalMoneda2(),
+              Packs(),
+              Botones(),
+            ],
+          ),
         ),
-      ),
     );
   }
 
@@ -54,15 +54,15 @@ class Home extends StatelessWidget {
         datos.packs107 = datos.monedaConvertida / 107;
         datos.packs535 = datos.monedaConvertida / 535;
         datos.packs1070 = datos.monedaConvertida / 1070;
-      } else if(datos.bitAPeso) {
+      } else if (datos.bitAPeso) {
         datos.monedaConvertida = dp((datos.monto * datos.valorBitcoin), 2);
         datos.moneda2Convertida =
             dp(((datos.monto * datos.valorBitcoin) / datos.valorEuro), 6);
 
-        datos.packs64 = datos.monto / 64.20;
-        datos.packs107 = datos.monto / 107;
-        datos.packs535 = datos.monto / 535;
-        datos.packs1070 = datos.monto / 1070;
+        datos.packs64 = datos.moneda2Convertida / 64.20;
+        datos.packs107 = datos.moneda2Convertida / 107;
+        datos.packs535 = datos.moneda2Convertida / 535;
+        datos.packs1070 = datos.moneda2Convertida / 1070;
       } else {
         datos.monedaConvertida = dp((datos.monto * datos.valorEuro), 2);
         datos.moneda2Convertida =
