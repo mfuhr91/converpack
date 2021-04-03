@@ -14,23 +14,32 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'ConverPack',
-        home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color.fromRGBO(42, 197, 183, 1.0),
-            title: Row(
-              children: [
-                Text('ConverPack'),
-                SizedBox(width: 5.0),
-                Image(
-                  image: AssetImage('assets/bandera.png'),
-                  fit: BoxFit.cover,
-                  width: 25.0,
-                ),
-              ],
+        home: GestureDetector(
+          onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            FocusManager.instance.primaryFocus?.unfocus(); // saca el foco al textField y oculta el teclado
+          }
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color.fromRGBO(42, 197, 183, 1.0),
+              title: Row(
+                children: [
+                  Text('ConverPack'),
+                  SizedBox(width: 5.0),
+                  Image(
+                    image: AssetImage('assets/bandera.png'),
+                    fit: BoxFit.cover,
+                    width: 25.0,
+                  ),
+                ],
+              ),
             ),
+            body: Home(),
           ),
-          body: Home(),
-        ),
+
+        ), 
         theme: ThemeData(
           brightness: Brightness.light,
           accentColor: Color.fromRGBO(42, 197, 183, 1.0),
