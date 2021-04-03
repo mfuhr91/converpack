@@ -26,7 +26,6 @@ class CampoMonto extends StatelessWidget {
             fontSize: datos.fontSize,
             fontWeight: FontWeight.bold,
             color: Colors.black),
-        //autofocus: true,
         keyboardType: TextInputType.numberWithOptions(signed: false, decimal: true),
         decoration: InputDecoration(
           icon: Icon(datos.iconMonto, size: datos.fontSize + 3.0, color: datos.color),
