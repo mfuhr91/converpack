@@ -9,7 +9,7 @@ class CampoMonto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final datos = Provider.of<Datos>(context);
-
+    
     return Container(
       width: datos.width * 0.85,
       margin: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -20,15 +20,17 @@ class CampoMonto extends StatelessWidget {
       padding: EdgeInsets.only(left: 10.0),
       child: TextField(
         inputFormatters: [
-          FilteringTextInputFormatter(RegExp(',*-* *'), allow: false),
+          FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\,?\d{0,8}')),
         ],
         style: TextStyle(
             fontSize: datos.fontSize,
             fontWeight: FontWeight.bold,
             color: Colors.black),
-        keyboardType: TextInputType.numberWithOptions(signed: false, decimal: true),
+        keyboardType:
+            TextInputType.numberWithOptions(signed: false, decimal: true),
         decoration: InputDecoration(
-          icon: Icon(datos.iconMonto, size: datos.fontSize + 3.0, color: datos.color),
+          icon: Icon(datos.iconMonto,
+              size: datos.fontSize + 3.0, color: datos.color),
           hintStyle: TextStyle(fontSize: datos.fontSize, color: Colors.black),
           hintText: ' Ingrese un monto',
           border: InputBorder.none,
@@ -38,6 +40,10 @@ class CampoMonto extends StatelessWidget {
         cursorColor: Color.fromRGBO(42, 197, 183, 1.0),
         cursorRadius: Radius.circular(15.0),
         onChanged: (valor) {
+          if (valor.contains(",")) {
+            print("OK");
+            valor = valor.replaceFirst(RegExp(','), '.');
+          }
           if (valor == '') {
             datos.monedaConvertida = 0.00;
             datos.moneda2Convertida = 0.00;
