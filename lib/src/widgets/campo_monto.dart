@@ -20,7 +20,7 @@ class CampoMonto extends StatelessWidget {
       padding: EdgeInsets.only(left: 10.0),
       child: TextField(
         inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\,?\d{0,8}')),
+          FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?[\.,]?\d{0,8}')),
         ],
         style: TextStyle(
             fontSize: datos.fontSize,
@@ -41,8 +41,8 @@ class CampoMonto extends StatelessWidget {
         cursorRadius: Radius.circular(15.0),
         onChanged: (valor) {
           if (valor.contains(",")) {
-            print("OK");
-            valor = valor.replaceFirst(RegExp(','), '.');
+            // necesario para que haga los calculos con decimales si se ingresa comma
+            valor = valor.replaceAll(',','.');
           }
           if (valor == '') {
             datos.monedaConvertida = 0.00;
