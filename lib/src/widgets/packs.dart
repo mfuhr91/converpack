@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -24,57 +26,23 @@ class Packs extends StatelessWidget {
             child: Text('Packs:',
               style: TextStyle(
                 fontSize: datos.fontSize - 2,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
                 color: Colors.black
               )
             ),
           ),
-          _pack64(datos),
+          SizedBox(height: 5.0),
           _pack107(datos),
+          SizedBox(height: 5.0),
           _pack535(datos),
+          SizedBox(height: 5.0),
           _pack1070(datos),
+          SizedBox(height: 5.0),
         ],
       ),
     );
   }
 
-  Container _pack64(Datos datos) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.only(bottom: 5.0),
-      width: datos.width * 0.80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        border: Border.all(),
-      ),
-      child: Row(
-        children: [
-          SizedBox(width: 5.0),
-          Icon(FontAwesomeIcons.cube, size: datos.fontSize, color: Colors.black),
-          Text(' 64.20€: ',
-            style: TextStyle(
-              fontSize: datos.fontSize - 2,
-              fontWeight: FontWeight.w400,
-              color: Colors.black
-            )
-          ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 6.0),
-              child: Text('${datos.packs64.toStringAsFixed(2)} packs',
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: datos.fontSize,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.black
-                )
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
   Container _pack107(Datos datos) {
     return Container(
       padding: EdgeInsets.all(10.0),
@@ -98,12 +66,12 @@ class Packs extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 2.0),
+              padding: (Platform.isAndroid) ? const EdgeInsets.only(left: 0.0) : const EdgeInsets.only(left: 4.0),
               child: Text('${datos.packs107.toStringAsFixed(2)} packs',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: datos.fontSize,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w700,
                   color: Colors.black
                 )
               ),
@@ -137,12 +105,12 @@ class Packs extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 2.0),
+              padding: (Platform.isAndroid) ? const EdgeInsets.only(left: 2.0) : const EdgeInsets.only(left: 0.0),
               child: Text('${datos.packs535.toStringAsFixed(2)} packs',
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: datos.fontSize,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w700,
                   color: Colors.black
                 )
               ),
@@ -176,13 +144,16 @@ class Packs extends StatelessWidget {
             )
           ),
           Flexible(
-            child: Text('${datos.packs1070.toStringAsFixed(2)} packs',
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: datos.fontSize,
-                fontWeight: FontWeight.w900,
-                color: Colors.black
-              )
+            child: Padding(
+              padding: (Platform.isAndroid) ? const EdgeInsets.only(left: 0.0) : const EdgeInsets.only(left: 4.0),
+              child: Text('${datos.packs1070.toStringAsFixed(2)} packs',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: datos.fontSize,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black
+                )
+              ),
             ),
           ),
         ],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,8 @@ class Botones extends StatelessWidget {
       alturaBoton = datos.height * 0.075;
     } else if (datos.height <= 800 && datos.width <= 1300) {
       alturaBoton = datos.height * 0.2;
+    } else if (Platform.isIOS && datos.height >= 1300) {
+      alturaBoton = datos.height * 0.08;
     } else {
       alturaBoton = datos.height * 0.2;
     }
@@ -82,8 +86,7 @@ class Botones extends StatelessWidget {
 
   FlatButton _convertirBitAPeso(Datos datos, double alturaBoton) {
     return FlatButton(
-        height:
-            alturaBoton, //(datos.height < 350.0) ? datos.height * 0.2 : datos.height * 0.075,
+        height: alturaBoton, //(datos.height < 350.0) ? datos.height * 0.2 : datos.height * 0.075,
         color: (datos.bitAPeso) ? datos.color : Colors.grey[300],
         child: Row(
           children: [
@@ -116,8 +119,7 @@ class Botones extends StatelessWidget {
 
   FlatButton _convertirAPeso(Datos datos, double alturaBoton) {
     return FlatButton(
-        height:
-            alturaBoton, //(datos.height < 350.0) ? datos.height * 0.2 : datos.height * 0.075,
+        height: alturaBoton, //(datos.height < 350.0) ? datos.height * 0.2 : datos.height * 0.075,
         color: (datos.euroAPeso) ? datos.color : Colors.grey[300],
         child: Row(
           children: [
