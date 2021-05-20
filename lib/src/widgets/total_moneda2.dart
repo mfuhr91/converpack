@@ -3,12 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:converpak/src/services/datos.dart';
 
-class TotalMoneda2 extends StatefulWidget {
-  @override
-  _TotalMoneda2State createState() => _TotalMoneda2State();
-}
+class TotalMoneda2 extends StatelessWidget {
 
-class _TotalMoneda2State extends State<TotalMoneda2> {
   @override
   Widget build(BuildContext context) {
     final datos = Provider.of<Datos>(context);

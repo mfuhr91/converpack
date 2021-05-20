@@ -1,3 +1,6 @@
+import 'package:converpak/src/models/moneda_model.dart';
+import 'package:converpak/src/services/moneda_service.dart';
+import 'package:converpak/src/widgets/cotizacion.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
@@ -5,39 +8,14 @@ import 'dart:math';
 import 'package:converpak/src/services/datos.dart';
 import 'package:converpak/src/widgets/botones.dart';
 import 'package:converpak/src/widgets/campo_monto.dart';
-import 'package:converpak/src/widgets/cotizacion.dart';
 import 'package:converpak/src/widgets/packs.dart';
 import 'package:converpak/src/widgets/total_moneda.dart';
 import 'package:converpak/src/widgets/total_moneda2.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    final datos = Provider.of<Datos>(context);
-
-    datos.width = MediaQuery.of(context).size.width;
-    datos.height = MediaQuery.of(context).size.height;
-    datos.bloque = datos.width / 100;
-    datos.fontSize = datos.bloque * 6;
-
-    datos.color = Theme.of(context).accentColor;
-
-    return Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CampoMonto(),
-              Cotizacion(),
-              SizedBox(height: 10.0),
-              TotalMoneda(),
-              TotalMoneda2(),
-              Packs(),
-              Botones(),
-            ],
-          ),
-        ),
-    );
-  }
+  _HomeState createState() => _HomeState();
 
   static double dp(double val, int places) {
     double mod = pow(10.0, places);
@@ -75,5 +53,76 @@ class Home extends StatelessWidget {
       }
     }
     datos.actualizar();
+  }
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    final datos = Provider.of<Datos>(context);
+
+    datos.width = MediaQuery.of(context).size.width;
+    datos.height = MediaQuery.of(context).size.height;
+    datos.bloque = datos.width / 100;
+    datos.fontSize = datos.bloque * 6;
+
+    datos.color = Theme.of(context).accentColor;
+
+    RefreshController _refreshController =
+        RefreshController(initialRefresh: true);
+
+    void _onRefresh() async {
+      datos.valorEuro = 0.0;
+      datos.valorBitcoin = 0.0;
+      try {
+        List<Moneda> monedas = await MonedaService().getCotizaciones();
+
+        if (monedas != null && monedas.length > 0) {
+          monedas.forEach((element) {
+            if (element.tipo.contains('euro_blue')) {
+              datos.valorEuro = element.valor;
+            } else {
+              datos.valorBitcoin = element.valor;
+            }
+          });
+
+          datos.actualizar();
+          _refreshController.refreshCompleted();
+        } else {
+          _refreshController.refreshFailed();
+        }
+      } catch (Exception) {
+        datos.actualizar();
+        _refreshController.refreshFailed();
+      }
+    }
+
+    return SmartRefresher(
+      enablePullDown: true,
+      header: ClassicHeader(
+        idleText: "Deslice para actualizar cotizaciones",
+        releaseText: "Suelte para actualizar cotizaciones",
+        refreshingText: "Actualizando cotizaciones",
+        completeText: "Cotizaciones actualizadas!",
+        failedText: "Cotizaciones no actualizadas!",
+      ),
+      controller: _refreshController,
+      onRefresh: _onRefresh,
+      child: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CampoMonto(),
+              Cotizacion(),
+              SizedBox(height: 10.0),
+              TotalMoneda(),
+              TotalMoneda2(),
+              Packs(),
+              Botones(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
